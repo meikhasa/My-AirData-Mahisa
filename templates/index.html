@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Airdata - Dashboard Prediksi Kualitas Udara</title>
+
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- KONFIGURASI DARK MODE TAILWIND v4 -->
+    <style type="text/tailwindcss">
+        @variant dark (&:where(.dark, .dark *));
+
+        /* Styling Kartu (Kotak): Light Mode vs Dark Mode */
+        .card-box {
+            @apply bg-white/60 dark:bg-slate-900/60 backdrop-blur-md border border-white/40 dark:border-slate-700/50 text-slate-800 dark:text-slate-100 shadow-lg transition-all duration-300;
+        }
+
+        .card-box-inner {
+            @apply bg-white/40 dark:bg-slate-950/50 border border-white/30 dark:border-slate-800/60 transition-all duration-300;
+        }
+
+        /* Class khusus untuk kartu interaktif yang bisa diklik */
+        .card-interactive {
+            @apply cursor-pointer hover:scale-[1.02] hover:shadow-xl active:scale-95 transition-all duration-200 select-none;
+        }
+    </style>
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<!-- class="min-h-screen transition-all duration-700 font-sans overflow-x-hidden bg-gradient-to-b from-[#38bdf8] via-[#0284c7] to-[#1d4ed8] text-slate-800 dark:text-slate-100"> -->
+
+<body class="min-h-screen transition-all duration-1000 font-sans overflow-x-hidden text-slate-800 dark:text-slate-100">
+
+
+    <div class="p-4 sm:p-6 max-w-[1600px] mx-auto">
+
+        <!-- HEADER TOP BAR -->
+        <header class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0">
+            <div class="flex items-center gap-2.5 text-2xl font-bold text-white drop-shadow-md">
+                <span>🌤️</span>
+                <h2>My Airdata</h2>
+            </div>
+            <div class="flex items-center gap-3.5">
+                <div class="card-box px-4 py-2 rounded-xl font-semibold text-sm" id="current-date">Kamis, 27 Agustus
+                    2026</div>
+                <div class="card-box w-[110px] text-center tabular-nums px-4 py-2 rounded-xl font-semibold text-sm"
+                    id="current-time">00:25:24</div>
+                <!-- Tombol Toggle Dark Mode -->
+                <button id="theme-btn" onclick="toggleDarkMode()"
+                    class="card-box px-4 py-2 rounded-full cursor-pointer text-sm font-semibold select-none hover:opacity-90 active:scale-95">
+                    🌙 Dark Mode
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT LAYOUT -->
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,2.2fr)_minmax(0,1fr)] gap-6">
+
+            <!-- LEFT PANEL -->
+            <div class="flex flex-col min-w-0">
+
+                <!-- DROPDOWN & WIDGET LOKASI -->
+                <div class="flex flex-wrap items-center gap-4 mb-6">
+
+                    <!-- CUSTOM DROPDOWN LOKASI -->
+                    <div class="relative">
+                        <button type="button" id="dropdownBtn" onclick="toggleCustomDropdown()"
+                            class="card-box flex items-center justify-between gap-3 px-6 py-3 rounded-full text-base font-bold outline-none cursor-pointer min-w-[220px]">
+                            <span id="selectedLocationText">Surabaya Pusat</span>
+                            <span class="text-xs transition-transform duration-200" id="dropdownArrow">▼</span>
+                        </button>
+
+                        <div id="dropdownMenu"
+                            class="hidden absolute left-0 mt-2 w-full card-box rounded-2xl shadow-2xl overflow-hidden z-50">
+                            <div onclick="selectLocation('surabaya_pusat', 'Surabaya Pusat')"
+                                class="px-5 py-3 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer font-semibold text-sm transition-colors">
+                                Surabaya Pusat
+                            </div>
+                            <div onclick="selectLocation('surabaya_utara', 'Surabaya Utara')"
+                                class="px-5 py-3 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer font-semibold text-sm transition-colors">
+                                Surabaya Utara
+                            </div>
+                            <div onclick="selectLocation('surabaya_selatan', 'Surabaya Selatan')"
+                                class="px-5 py-3 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer font-semibold text-sm transition-colors">
+                                Surabaya Selatan
+                            </div>
+                            <div onclick="selectLocation('surabaya_timur', 'Surabaya Timur')"
+                                class="px-5 py-3 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer font-semibold text-sm transition-colors">
+                                Surabaya Timur
+                            </div>
+                            <div onclick="selectLocation('surabaya_barat', 'Surabaya Barat')"
+                                class="px-5 py-3 hover:bg-black/10 dark:hover:bg-white/10 cursor-pointer font-semibold text-sm transition-colors">
+                                Surabaya Barat
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="text-xl">📍</span>
+
+                    <!-- Status Cuaca Ringkas -->
+                    <!-- Status Cuaca Ringkas -->
+                    <div class="flex gap-3.5 sm:ml-auto w-full sm:w-auto">
+                        <div class="card-box flex-1 sm:flex-none px-5 py-2.5 rounded-2xl text-center min-w-[100px]">
+                            <span class="text-xs opacity-75">Suhu</span>
+                            <div class="font-bold mt-1 text-base" id="widget-temp">
+                                {{ weather.temp if weather and weather.temp is not none else '-' }}
+                            </div>
+                        </div>
+                        <div class="card-box flex-1 sm:flex-none px-5 py-2.5 rounded-2xl text-center min-w-[100px]">
+                            <span class="text-xs opacity-75">Angin</span>
+                            <div class="font-bold mt-1 text-base" id="widget-wind">
+                                {{ weather.wind if weather and weather.wind is not none else '-' }}
+                            </div>
+                        </div>
+                        <div class="card-box flex-1 sm:flex-none px-5 py-2.5 rounded-2xl text-center min-w-[100px]">
+                            <span class="text-xs opacity-75">Cuaca</span>
+                            <div class="font-bold mt-1 text-base" id="widget-cond">
+                                {{ weather.condition if weather and weather.condition is not none else '-' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% if air is defined %}
+                <!-- SECTION 1: KUALITAS UDARA (6 KARTU POLUTAN) -->
+                <section class="mb-6">
+                    <h3 class="mb-3 text-lg font-bold text-white drop-shadow-sm">Kualitas Udara</h3>
+                    {% if air is defined %}
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3.5">
+                        <div onclick="openPollutantModal('CO')"
+                            class="card-box card-interactive p-5 rounded-2xl text-center">
+                            <span class="text-xs opacity-75 block mb-2 font-medium">CO (Karbon Monoksida)</span>
+                            <h4 class="text-2xl font-bold" id="val-co">{{ air.co if air and air.co is not none else '-'
+                                }}</h4>
+                        </div>
+                        <div onclick="openPollutantModal('NO2')"
+                            class="card-box card-interactive p-5 rounded-2xl text-center">
+                            <span class="text-xs opacity-75 block mb-2 font-medium">NO₂ (Nitrogen Dioksida)</span>
+                            <h4 class="text-2xl font-bold" id="val-no2">{{ air.no2 if air and air.no2 is not none else
+                                '-' }}</h4>
+                        </div>
+                        <div onclick="openPollutantModal('PM25')"
+                            class="card-box card-interactive p-5 rounded-2xl text-center">
+                            <span class="text-xs opacity-75 block mb-2 font-medium">PM2.5</span>
+                            <h4 class="text-2xl font-bold" id="val-pm25">{{ air.pm25 if air and air.pm25 is not none
+                                else '-' }}</h4>
+                        </div>
+                        <div onclick="openPollutantModal('PM10')"
+                            class="card-box card-interactive p-5 rounded-2xl text-center">
+                            <span class="text-xs opacity-75 block mb-2 font-medium">PM10</span>
+                            <h4 class="text-2xl font-bold" id="val-pm10">{{ air.pm10 if air and air.pm10 is not none
+                                else '-' }}</h4>
+                        </div>
+                        <div onclick="openPollutantModal('O3')"
+                            class="card-box card-interactive p-5 rounded-2xl text-center">
+                            <span class="text-xs opacity-75 block mb-2 font-medium">O₃ (Ozon)</span>
+                            <h4 class="text-2xl font-bold" id="val-o3">{{ air.o3 if air and air.o3 is not none else '-'
+                                }}</h4>
+                        </div>
+                        <div onclick="openPollutantModal('SO2')"
+                            class="card-box card-interactive p-5 rounded-2xl text-center">
+                            <span class="text-xs opacity-75 block mb-2 font-medium">SO₂ (Sulfur Dioksida)</span>
+                            <h4 class="text-2xl font-bold" id="val-so2">{{ air.so2 if air and air.so2 is not none else
+                                '-' }}</h4>
+                        </div>
+                    </div>
+                    {% endif %}
+                </section>
+                {% endif %}
+
+                <!-- SECTION 2: PRAKIRAAN ISPU -->
+                <section class="mb-6">
+                    <h3 class="mb-3 text-lg font-bold text-white drop-shadow-sm">Prakiraan Kualitas Udara (ISPU)</h3>
+                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-3" id="ispu-forecast-container"></div>
+                </section>
+
+                <!-- SECTION 3: PRAKIRAAN CUACA -->
+                <section class="mb-6">
+                    <h3 class="mb-3 text-lg font-bold text-white drop-shadow-sm">Prakiraan Cuaca</h3>
+                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-3" id="weather-forecast-container"></div>
+                </section>
+
+            </div>
+
+            <!-- RIGHT PANEL -->
+            <div class="flex flex-col min-w-0">
+
+                <!-- CATATAN CARD -->
+                <div class="card-box rounded-2xl p-5 mb-5">
+                    <h3 class="font-bold text-base">Catatan</h3>
+                    <p id="note-text" class="text-sm leading-relaxed opacity-90 mt-2.5">
+                        Barat: Kualitas udara Sedang mendekati batas sensitif karena volume kendaraan kawasan pusat
+                        bisnis.
+                    </p>
+                </div>
+
+                <!-- CHART CARD (INTERAKTIF SAAT DIKLIK) -->
+                <div onclick="openChartModal()"
+                    class="card-box card-interactive rounded-2xl p-5 mb-5 h-[520px] min-w-0 flex flex-col group relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-3.5 px-1 shrink-0">
+                        <p class="text-xs font-semibold">Perbandingan 6 Polutan Berdasarkan Prediksi Tanggal</p>
+                        <span class="text-xs opacity-60 group-hover:opacity-100 transition-opacity">🔍 Klik
+                            memperbesar</span>
+                    </div>
+                    <div class="flex-1 relative min-h-0 w-full card-box-inner rounded-xl p-2.5 overflow-hidden">
+                        <canvas id="pollutantChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL POP-UP CONTAINER WITH ANIMATION -->
+    <div id="modalContainer"
+        class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div id="modalBox"
+            class="card-box w-full max-w-md p-6 rounded-3xl shadow-2xl transform scale-90 transition-all duration-300 relative">
+            <button onclick="closeModal()"
+                class="absolute top-4 right-4 w-9 h-9 rounded-full card-box flex items-center justify-center font-bold text-sm hover:opacity-75 transition-opacity z-10 cursor-pointer">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            initTheme();
+            updateDashboard('surabaya_pusat');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+{
+  "surabaya_pusat": {
+    "location_name": "Surabaya Pusat",
+    "weather_current": {"temp": "31°C", "wind": "12 km/h", "condition": "Cerah"},
+    "pollutants": {"CO": 24, "NO2": 25, "PM25": 26, "PM10": 26, "O3": 27, "SO2": 28},
+    "note": "Pusat: Kualitas udara dalam kategori Baik. Aman untuk segala bentuk aktivitas luar ruangan.",
+    "ispu_forecast": [
+      {"date": "24 Aug", "value": 45, "status": "Baik", "icon": "😊"},
+      {"date": "25 Aug", "value": 48, "status": "Baik", "icon": "😊"},
+      {"date": "26 Aug", "value": 52, "status": "Sedang", "icon": "😐"},
+      {"date": "27 Aug", "value": 40, "status": "Baik", "icon": "😊"},
+      {"date": "28 Aug", "value": 38, "status": "Baik", "icon": "😊"},
+      {"date": "29 Aug", "value": 42, "status": "Baik", "icon": "😊"}
+    ],
+    "weather_forecast": [
+      {"time": "12:00", "temp": "31°C", "condition": "Cerah"},
+      {"time": "13:00", "temp": "32°C", "condition": "Cerah"},
+      {"time": "14:00", "temp": "31°C", "condition": "Berawan"},
+      {"time": "15:00", "temp": "30°C", "condition": "Berawan"},
+      {"time": "16:00", "temp": "29°C", "condition": "Cerah"},
+      {"time": "17:00", "temp": "28°C", "condition": "Cerah"}
+    ]
+  },
+  
+  "surabaya_utara": {
+    "location_name": "Surabaya Utara",
+    "weather_current": {"temp": "35°C", "wind": "25 km/h", "condition": "Terik & Berangin"},
+    "pollutants": {"CO": 85, "NO2": 92, "PM25": 145, "PM10": 110, "O3": 65, "SO2": 78},
+    "note": "Utara (Pelabuhan/Pesisir): Kualitas udara Tidak Sehat karena emisi industri dan kendaraan berat. Gunakan masker!",
+    "ispu_forecast": [
+      {"date": "24 Aug", "value": 135, "status": "Tidak Sehat", "icon": "😷"},
+      {"date": "25 Aug", "value": 145, "status": "Tidak Sehat", "icon": "😷"},
+      {"date": "26 Aug", "value": 160, "status": "Tidak Sehat", "icon": "😷"},
+      {"date": "27 Aug", "value": 120, "status": "Tidak Sehat", "icon": "😷"},
+      {"date": "28 Aug", "value": 95, "status": "Sedang", "icon": "😐"},
+      {"date": "29 Aug", "value": 110, "status": "Tidak Sehat", "icon": "😷"}
+    ],
+    "weather_forecast": [
+      {"time": "12:00", "temp": "34°C", "condition": "Terik"},
+      {"time": "13:00", "temp": "35°C", "condition": "Terik"},
+      {"time": "14:00", "temp": "34°C", "condition": "Terik"},
+      {"time": "15:00", "temp": "33°C", "condition": "Cerah"},
+      {"time": "16:00", "temp": "31°C", "condition": "Cerah"},
+      {"time": "17:00", "temp": "30°C", "condition": "Cerah"}
+    ]
+  },
+  "surabaya_selatan": {
+    "location_name": "Surabaya Selatan",
+    "weather_current": {"temp": "25°C", "wind": "8 km/h", "condition": "Hujan Deras"},
+    "pollutants": {"CO": 8, "NO2": 10, "PM25": 15, "PM10": 18, "O3": 12, "SO2": 10},
+    "note": "Selatan: Kualitas udara Sangat Baik didukung hujan lokal dan kawasan pemukiman asri.",
+    "ispu_forecast": [
+      {"date": "24 Aug", "value": 20, "status": "Baik", "icon": "🌧️"},
+      {"date": "25 Aug", "value": 22, "status": "Baik", "icon": "🌧️"},
+      {"date": "26 Aug", "value": 25, "status": "Baik", "icon": "😊"},
+      {"date": "27 Aug", "value": 18, "status": "Baik", "icon": "🌧️"},
+      {"date": "28 Aug", "value": 24, "status": "Baik", "icon": "😊"},
+      {"date": "29 Aug", "value": 20, "status": "Baik", "icon": "😊"}
+    ],
+    "weather_forecast": [
+      {"time": "12:00", "temp": "25°C", "condition": "Hujan Deras"},
+      {"time": "13:00", "temp": "26°C", "condition": "Hujan Sedang"},
+      {"time": "14:00", "temp": "26°C", "condition": "Berawan"},
+      {"time": "15:00", "temp": "27°C", "condition": "Cerah Berawan"},
+      {"time": "16:00", "temp": "26°C", "condition": "Cerah"},
+      {"time": "17:00", "temp": "25°C", "condition": "Cerah"}
+    ]
+  },
+  "surabaya_timur": {
+    "location_name": "Surabaya Timur",
+    "weather_current": {"temp": "29°C", "wind": "18 km/h", "condition": "Berawan"},
+    "pollutants": {"CO": 45, "NO2": 50, "PM25": 72, "PM10": 68, "O3": 40, "SO2": 35},
+    "note": "Timur (Kawasan Pendidikan & Pesisir): Kualitas udara Sedang. Paparan polusi moderat.",
+    "ispu_forecast": [
+      {"date": "24 Aug", "value": 65, "status": "Sedang", "icon": "😐"},
+      {"date": "25 Aug", "value": 72, "status": "Sedang", "icon": "😐"},
+      {"date": "26 Aug", "value": 70, "status": "Sedang", "icon": "😐"},
+      {"date": "27 Aug", "value": 80, "status": "Sedang", "icon": "😐"},
+      {"date": "28 Aug", "value": 60, "status": "Sedang", "icon": "😐"},
+      {"date": "29 Aug", "value": 55, "status": "Sedang", "icon": "😐"}
+    ],
+    "weather_forecast": [
+      {"time": "12:00", "temp": "29°C", "condition": "Berawan"},
+      {"time": "13:00", "temp": "30°C", "condition": "Cerah Berawan"},
+      {"time": "14:00", "temp": "30°C", "condition": "Berawan"},
+      {"time": "15:00", "temp": "29°C", "condition": "Berawan"},
+      {"time": "16:00", "temp": "28°C", "condition": "Cerah"},
+      {"time": "17:00", "temp": "27°C", "condition": "Cerah"}
+    ]
+  },
+  "surabaya_barat": {
+    "location_name": "Surabaya Barat",
+    "weather_current": {"temp": "33°C", "wind": "10 km/h", "condition": "Cerah Berawan"},
+    "pollutants": {"CO": 60, "NO2": 65, "PM25": 88, "PM10": 75, "O3": 55, "SO2": 45},
+    "note": "Barat: Kualitas udara Sedang mendekati batas sensitif karena volume kendaraan kawasan pusat bisnis.",
+    "ispu_forecast": [
+      {"date": "24 Aug", "value": 80, "status": "Sedang", "icon": "😐"},
+      {"date": "25 Aug", "value": 88, "status": "Sedang", "icon": "😐"},
+      {"date": "26 Aug", "value": 95, "status": "Sedang", "icon": "😐"},
+      {"date": "27 Aug", "value": 105, "status": "Tidak Sehat", "icon": "😷"},
+      {"date": "28 Aug", "value": 82, "status": "Sedang", "icon": "😐"},
+      {"date": "29 Aug", "value": 78, "status": "Sedang", "icon": "😐"}
+    ],
+    "weather_forecast": [
+      {"time": "12:00", "temp": "33°C", "condition": "Cerah"},
+      {"time": "13:00", "temp": "34°C", "condition": "Terik"},
+      {"time": "14:00", "temp": "33°C", "condition": "Cerah Berawan"},
+      {"time": "15:00", "temp": "31°C", "condition": "Cerah Berawan"},
+      {"time": "16:00", "temp": "30°C", "condition": "Cerah"},
+      {"time": "17:00", "temp": "29°C", "condition": "Cerah"}
+    ]
+  }
+}
