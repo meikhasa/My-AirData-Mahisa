@@ -39,15 +39,46 @@
 
     <div class="p-4 sm:p-6 max-w-[1600px] mx-auto">
 
-        <!-- HEADER TOP BAR -->
-        <header class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0">
+        <!-- HEADER TOP BAR MOBILE -->
+        <header class="md:hidden flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0">
+
+            <div class="flex justify-between w-full">
+                <div class="flex items-center gap-2.5 text-2xl font-bold text-white drop-shadow-md">
+                    <span>🌤️</span>
+                    <h2>My Airdata</h2>
+                </div>
+
+                <button id="theme-btn" onclick="toggleDarkMode()"
+                    class="card-box px-4 py-2 rounded-full cursor-pointer text-sm font-semibold select-none hover:opacity-90 active:scale-95">
+                    🌙 Dark Mode
+                </button>
+            </div>
+
+            <!-- <div class="flex items-center gap-3.5">
+                <div class="card-box px-4 py-2 rounded-xl font-semibold text-sm" id="current-date">Kamis, 27 Agustus
+                    2026</div> -->
+            <div class="flex flex-wrap justify-center sm:justify-end items-center gap-2 sm:gap-3.5 mt-4 sm:mt-0">
+                <div class="card-box px-4 py-2 rounded-xl font-semibold text-sm" id="current-date">...</div>
+                <div class="card-box w-[110px] text-center tabular-nums px-4 py-2 rounded-xl font-semibold text-sm"
+                    id="current-time">00:25:24</div>
+                <!-- Tombol Toggle Dark Mode -->
+
+
+            </div>
+
+        </header>
+
+        <!-- WEB -->
+        <header class="hidden md:block flex flex-col sm:flex-row justify-between items-center mb-6 gap-4 sm:gap-0">
             <div class="flex items-center gap-2.5 text-2xl font-bold text-white drop-shadow-md">
                 <span>🌤️</span>
                 <h2>My Airdata</h2>
             </div>
-            <div class="flex items-center gap-3.5">
+            <!-- <div class="flex items-center gap-3.5">
                 <div class="card-box px-4 py-2 rounded-xl font-semibold text-sm" id="current-date">Kamis, 27 Agustus
-                    2026</div>
+                    2026</div> -->
+            <div class="flex flex-wrap justify-center sm:justify-end items-center gap-2 sm:gap-3.5 mt-4 sm:mt-0">
+                <div class="card-box px-4 py-2 rounded-xl font-semibold text-sm" id="current-date">...</div>
                 <div class="card-box w-[110px] text-center tabular-nums px-4 py-2 rounded-xl font-semibold text-sm"
                     id="current-time">00:25:24</div>
                 <!-- Tombol Toggle Dark Mode -->
@@ -69,8 +100,10 @@
 
                     <!-- CUSTOM DROPDOWN LOKASI -->
                     <div class="relative">
+                        <!-- <button type="button" id="dropdownBtn" onclick="toggleCustomDropdown()"
+                            class="card-box flex items-center justify-between gap-3 px-6 py-3 rounded-full text-base font-bold outline-none cursor-pointer min-w-[220px]"> -->
                         <button type="button" id="dropdownBtn" onclick="toggleCustomDropdown()"
-                            class="card-box flex items-center justify-between gap-3 px-6 py-3 rounded-full text-base font-bold outline-none cursor-pointer min-w-[220px]">
+                            class="card-box flex items-center justify-between gap-3 px-6 py-3 rounded-full text-base font-bold outline-none cursor-pointer w-full sm:w-auto min-w-[220px]">
                             <span id="selectedLocationText">Surabaya Pusat</span>
                             <span class="text-xs transition-transform duration-200" id="dropdownArrow">▼</span>
                         </button>
@@ -176,13 +209,15 @@
                 <!-- SECTION 2: PRAKIRAAN ISPU -->
                 <section class="mb-6">
                     <h3 class="mb-3 text-lg font-bold text-white drop-shadow-sm">Prakiraan Kualitas Udara (ISPU)</h3>
-                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-3" id="ispu-forecast-container"></div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3" id="ispu-forecast-container">
+                    </div>
                 </section>
 
                 <!-- SECTION 3: PRAKIRAAN CUACA -->
                 <section class="mb-6">
                     <h3 class="mb-3 text-lg font-bold text-white drop-shadow-sm">Prakiraan Cuaca</h3>
-                    <div class="grid grid-cols-3 sm:grid-cols-6 gap-3" id="weather-forecast-container"></div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3" id="weather-forecast-container">
+                    </div>
                 </section>
 
             </div>
@@ -200,8 +235,10 @@
                 </div>
 
                 <!-- CHART CARD (INTERAKTIF SAAT DIKLIK) -->
+                <!-- <div onclick="openChartModal()"
+                    class="card-box card-interactive rounded-2xl p-5 mb-5 h-[520px] min-w-0 flex flex-col group relative overflow-hidden"> -->
                 <div onclick="openChartModal()"
-                    class="card-box card-interactive rounded-2xl p-5 mb-5 h-[520px] min-w-0 flex flex-col group relative overflow-hidden">
+                    class="card-box card-interactive rounded-2xl p-5 mb-5 h-[350px] lg:h-[520px] min-w-0 flex flex-col group relative overflow-hidden">
                     <div class="flex items-center justify-between mb-3.5 px-1 shrink-0">
                         <p class="text-xs font-semibold">Perbandingan 6 Polutan Berdasarkan Prediksi Tanggal</p>
                         <span class="text-xs opacity-60 group-hover:opacity-100 transition-opacity">🔍 Klik
