@@ -4,6 +4,7 @@ let currentChartData = null;
 let currentDetails = null; // Menyimpan cache data untuk pop-up modal
 
 // LOGIKA REALTIME CLOCK (TANGGAL & JAM)
+// LOGIKA REALTIME CLOCK (TANGGAL & JAM)
 function updateRealtimeClock() {
     const dateElement = document.getElementById('current-date');
     const timeElement = document.getElementById('current-time');
@@ -12,7 +13,7 @@ function updateRealtimeClock() {
 
     const now = new Date();
 
-    // Format Tanggal Indonesia (contoh: Kamis, 27 Agustus 2026)
+    // Format Tanggal Indonesia
     const optionsDate = {
         weekday: 'long',
         day: 'numeric',
@@ -382,21 +383,21 @@ function updateDynamicBackground(weatherForecastList, fallbackCondition) {
             bgClasses = "from-[#475569] via-[#334155] to-[#1e293b]";
         } else {
             if (currentHour >= 0 && currentHour < 3) {
-                bgClasses = "from-[#020617] via-[#090d16] to-[#0f172a]"; 
+                bgClasses = "from-[#020617] via-[#090d16] to-[#0f172a]";
             } else if (currentHour >= 3 && currentHour < 6) {
-                bgClasses = "from-[#0f172a] via-[#2e1065] to-[#3b0764]"; 
+                bgClasses = "from-[#0f172a] via-[#2e1065] to-[#3b0764]";
             } else if (currentHour >= 6 && currentHour < 9) {
-                bgClasses = "from-[#1e3a8a] via-[#1e1b4b] to-[#0f172a]"; 
+                bgClasses = "from-[#1e3a8a] via-[#1e1b4b] to-[#0f172a]";
             } else if (currentHour >= 9 && currentHour < 12) {
-                bgClasses = "from-[#0369a1] via-[#0f172a] to-[#1e293b]"; 
+                bgClasses = "from-[#0369a1] via-[#0f172a] to-[#1e293b]";
             } else if (currentHour >= 12 && currentHour < 15) {
-                bgClasses = "from-[#0284c7] via-[#1e293b] to-[#0f172a]"; 
+                bgClasses = "from-[#0284c7] via-[#1e293b] to-[#0f172a]";
             } else if (currentHour >= 15 && currentHour < 18) {
-                bgClasses = "from-[#1d4ed8] via-[#7e22ce] to-[#c2410c]"; 
+                bgClasses = "from-[#1d4ed8] via-[#7e22ce] to-[#c2410c]";
             } else if (currentHour >= 18 && currentHour < 21) {
-                bgClasses = "from-[#0f172a] via-[#1e1b4b] to-[#311042]"; 
+                bgClasses = "from-[#0f172a] via-[#1e1b4b] to-[#311042]";
             } else {
-                bgClasses = "from-[#090d16] via-[#0f172a] to-[#1e1b4b]"; 
+                bgClasses = "from-[#090d16] via-[#0f172a] to-[#1e1b4b]";
             }
         }
     } else {
@@ -409,21 +410,21 @@ function updateDynamicBackground(weatherForecastList, fallbackCondition) {
             bgClasses = "from-[#e2e8f0] via-[#f1f5f9] to-[#ffffff]";
         } else {
             if (currentHour >= 0 && currentHour < 3) {
-                bgClasses = "from-[#94a3b8] via-[#cbd5e1] to-[#e2e8f0]"; 
+                bgClasses = "from-[#94a3b8] via-[#cbd5e1] to-[#e2e8f0]";
             } else if (currentHour >= 3 && currentHour < 6) {
-                bgClasses = "from-[#fbcfe8] via-[#f3e8ff] to-[#e0e7ff]"; 
+                bgClasses = "from-[#fbcfe8] via-[#f3e8ff] to-[#e0e7ff]";
             } else if (currentHour >= 6 && currentHour < 9) {
-                bgClasses = "from-[#7dd3fc] via-[#bae6fd] to-[#e0f2fe]"; 
+                bgClasses = "from-[#7dd3fc] via-[#bae6fd] to-[#e0f2fe]";
             } else if (currentHour >= 9 && currentHour < 12) {
-                bgClasses = "from-[#38bdf8] via-[#7dd3fc] to-[#bae6fd]"; 
+                bgClasses = "from-[#38bdf8] via-[#7dd3fc] to-[#bae6fd]";
             } else if (currentHour >= 12 && currentHour < 15) {
-                bgClasses = "from-[#0ea5e9] via-[#38bdf8] to-[#7dd3fc]"; 
+                bgClasses = "from-[#0ea5e9] via-[#38bdf8] to-[#7dd3fc]";
             } else if (currentHour >= 15 && currentHour < 18) {
-                bgClasses = "from-[#fdba74] via-[#fbcfe8] to-[#ddd6fe]"; 
+                bgClasses = "from-[#fdba74] via-[#fbcfe8] to-[#ddd6fe]";
             } else if (currentHour >= 18 && currentHour < 21) {
-                bgClasses = "from-[#c7d2fe] via-[#e0e7ff] to-[#eef2ff]"; 
+                bgClasses = "from-[#c7d2fe] via-[#e0e7ff] to-[#eef2ff]";
             } else {
-                bgClasses = "from-[#cbd5e1] via-[#e2e8f0] to-[#f1f5f9]"; 
+                bgClasses = "from-[#cbd5e1] via-[#e2e8f0] to-[#f1f5f9]";
             }
         }
     }
